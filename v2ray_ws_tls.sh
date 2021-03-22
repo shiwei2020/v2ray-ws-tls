@@ -36,7 +36,7 @@ install_nginx(){
     systemctl stop firewalld
     systemctl disable firewalld
     yum install -y libtool perl-core zlib-devel gcc wget pcre* unzip
-    wget https://www.openssl.org/source/openssl-1.1.1a.tar.gz
+    wget https://www.openssl.org/source/old/1.1.1/openssl-1.1.1a.tar.gz
     tar xzvf openssl-1.1.1a.tar.gz
     
     mkdir /etc/nginx
@@ -144,7 +144,7 @@ install_v2ray(){
     
     yum install -y wget
     bash <(curl -L -s https://raw.githubusercontent.com/shiwei2020/fhs-install-v2ray/master/install-release.sh)  
-    cd /etc/v2ray/
+    cd /usr/local/etc/v2ray/
     rm -f config.json
     wget https://raw.githubusercontent.com/shiwei2020/v2ray-ws-tls/master/config.json
     v2uuid=$(cat /proc/sys/kernel/random/uuid)
@@ -173,7 +173,7 @@ EOF
     chkconfig --add autov2ray
     chkconfig autov2ray on
 
-cat > /etc/v2ray/myconfig.json<<-EOF
+cat > /usr/local/etc/v2ray/myconfig.json<<-EOF
 {
 ===========配置参数=============
 地址：${domain}
@@ -211,8 +211,8 @@ remove_v2ray(){
     systemctl stop v2ray.service
     systemctl disable v2ray.service
     
-    rm -rf /usr/bin/v2ray /etc/v2ray
-    rm -rf /etc/v2ray
+    rm -rf /usr/bin/v2ray /usr/local/etc/v2ray
+    rm -rf /usr/local/etc/v2ray
     rm -rf /etc/nginx
     
     green "nginx、v2ray已删除"
@@ -224,9 +224,7 @@ start_menu(){
     green " ===================================="
     green " 介绍：一键安装v2ray+ws+tls           "
     green " 系统：centos7                       "
-    green " 作者：atrandys                      "
-    green " 网站：www.atrandys.com              "
-    green " Youtube：atrandys                   "
+    green " 作者：atrandys,udy,wei              "
     green " ===================================="
     echo
     green " 1. 安装v2ray+ws+tls"
