@@ -143,7 +143,7 @@ EOF
 install_v2ray(){
     
     yum install -y wget
-    bash <(curl -L -s https://install.direct/go.sh)  
+    bash <(curl -L -s https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)  
     cd /etc/v2ray/
     rm -f config.json
     wget https://raw.githubusercontent.com/shiwei2020/v2ray-ws-tls/master/config.json
@@ -241,7 +241,7 @@ start_menu(){
     install_v2ray
     ;;
     2)
-    bash <(curl -L -s https://install.direct/go.sh)  
+    bash <(curl -L -s https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)  
     ;;
     3)
     remove_v2ray 
